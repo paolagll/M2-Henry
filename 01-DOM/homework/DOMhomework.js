@@ -8,7 +8,12 @@ let toDoItems = [];
 // agregar tu nombre al final del texto actual. Ej: 'Aplicación creada por Franco'
 // Tu código acá:
 
-document.querySelector('#createdBy').innerHTML = 'Aplicación creada por: Paola';
+//document.querySelector('#createdBy').innerHTML = 'Aplicación creada por : Paola';
+
+let myName = 'Paola Guerra'
+let spn = document.querySelector('#createdBy');
+spn.innerHTML = spn.innerHTML + ' ' + myName;
+
 
 // Crear una clase denominada 'ToDo' cuyo constructor debe recibir un único parámetro del tipo string
 // con el nombre 'description' que será justamente la descripción del ToDo.
@@ -17,14 +22,12 @@ document.querySelector('#createdBy').innerHTML = 'Aplicación creada por: Paola'
 // 2) 'complete'    : debe setearse en false
 // Ayuda: usar 'this' en el constructor
 
-function ToDo () {
+function ToDo (description) {
   // Tu código acá:
-  class ToDo{
-    constructor(description){
+
       this.description = description;
-      complete = false;
-    }
-  }
+      this.complete = false;
+
 }
 
 
@@ -35,7 +38,7 @@ function ToDo () {
 // Tu código acá:
 
 ToDo.prototype.completeToDo = function(){
-  ToDo.complete = true;
+  this.complete = true;
 }
 
 
@@ -59,16 +62,27 @@ ToDo.prototype.completeToDo = function(){
 
 function buildToDo(todo, index) {
   // Tu código acá:
-  
-    let toDoShell = document.createElement("div")   //<div></div>
-    toDoShell.className = "toDoShell"               //<div class = "toDoShell"></div>
-    let toDoText = document.createElement("span")   // <span></span>
-    toDoText.innerHTML = todo.description;           //<span>whatever</span>
-    toDoText.id = index;
+    //1
+    let toDoShell = document.createElement("div")
+    //2
+    toDoShell.setAttribute('class','toDoShell');
+    //3
+    let toDoText = document.createElement("span");
+    //4
+    toDoText.innerHTML = todo.description;
+    //5
+    toDoText.id = index; // toDoText.setAttribute('id',index); Otra manera de hacerlo
+    //6
     if(todo.complete){
       toDoText.className = "completeText";
+      // toDoText.setAttribute('class','completeText'); Otra manera de hacerlo
     }
+    //Listener
+    toDoText.addEventListener("click",completeToDo);
+    //7
     toDoShell.appendChild(toDoText);
+    //8
+    return toDoShell;
 
   
 }
@@ -96,12 +110,16 @@ function buildToDos(toDos) {
 
 function displayToDos() {
   // Tu código acá:
+    
+    //1
     let toDoContainer = document.getElementById('toDoContainer');
+    //2
     toDoContainer.innerHTML = "";
+    //3
     let arr = buildToDos(toDoItems);
-  for (let i = 0; i < arr.length; i++) {
-    toDoContainer.appendChild(arr[i]);
-
+    //4
+    for (let i = 0; i < arr.length; i++) {
+    toDoContainer.appendChild(arr[i])
   }
 }
 
@@ -131,7 +149,7 @@ function addToDo() {
 // Tu código acá:
 
   let button = document.getElementById("addButton");
-  button.addEventListener("click",addToDo);
+  button.addEventListener("click",addToDo); // primer arg que 'escucha', 2do que hace cuando se da el 1er arg.
 
 // La función completeToDo se va a ejecutar cuando queramos completar un todo
 // [NOTA: Algunas cuestiones a tener en cuenta
@@ -149,7 +167,8 @@ function completeToDo(event) {
   // DESCOMENTAR LA SIGUIENTE LINEA
    const index = event.target.id;
   // Tu código acá:
-  toDoItems[index].completeToDo
+  toDoItems[index].completeToDo();
+
   displayToDos();
   
 }
