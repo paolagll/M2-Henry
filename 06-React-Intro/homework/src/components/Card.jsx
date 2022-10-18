@@ -1,13 +1,14 @@
 import React from 'react';
+import '../styles/Card.css'
 
 export default function Card({max,min,name,img,onClose}) {
   // acá va tu código
-  return <div>temp
+  return <div className='card'>
     <button onClick={onClose}>X</button>
-  <div>
+    <div>
     <span>{name}</span>
-  </div>
-  <div>
+    </div>
+    <div>
     <div>
       <span>{min}</span>
       <span></span>

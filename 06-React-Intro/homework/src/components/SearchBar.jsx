@@ -1,9 +1,12 @@
 import React from 'react';
+import { Button } from 'bootstrap';
+import '../styles/SearchBar.css';
+
 
 export default function SearchBar({onSearch}) {
   // acá va tu código
-  return <div>
+  return <div className = 'container'>
     <input type="text" />
-    <button onClick={() => onSearch('city')}>Agregar</button>
+    <button className='btnSearch' onClick={() => onSearch('city')}>Agregar</button>
   </div>
 };

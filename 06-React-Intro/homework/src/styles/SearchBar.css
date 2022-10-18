@@ -1,0 +1,17 @@
+.container{
+    padding-right: 10px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.btnSearch{
+    color: black;
+    background-color: aliceblue;
+    border-radius: 6px;
+    margin-left: 10px;
+}
+
+.btnSearch:hover{
+    color: aliceblue;
+    background-color: black;
+}
